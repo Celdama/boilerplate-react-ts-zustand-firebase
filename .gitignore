@@ -24,11 +24,12 @@ yarn-error.log*
 
 
 # Firebase
-.firebaserc
-firebase.json
-firestore.indexes.json
-firestore.rules
-storage.rules
-build
-.firebase
-config
+# DECOMMENTER EN DESSOUS UNE FOIS FIREBASE BRANCHEE
+# .firebaserc
+# firebase.json
+# firestore.indexes.json
+# firestore.rules
+# storage.rules
+# build
+# .firebase
+# config
