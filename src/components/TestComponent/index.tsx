@@ -40,7 +40,7 @@ const TestComponent = (): ReactElement => {
 
   return (
     <Wrapper>
-      from test component
+
       <br />
       <form>
         <input
