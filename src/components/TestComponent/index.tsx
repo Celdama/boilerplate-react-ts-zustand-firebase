@@ -2,22 +2,15 @@
 /* eslint-disable object-curly-newline */
 // eslint-disable-next-line object-curly-newline
 import { nanoid } from 'nanoid';
-import { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import { ChangeEvent, MouseEvent, ReactElement, useEffect, useState } from 'react';
 
 import { useTodosSelector } from '../../store/selectors/useTodoSelector';
 import { useStore } from '../../store/useStore';
-import { Wrapper } from './testComponent.tw';
+import { Content, Form, Wrapper } from './testComponent.tw';
 
 const TestComponent = (): ReactElement => {
   const [todoTitle, setTodoTitle] = useState('');
-  const {
-    addTodo,
-    deleteTodo,
-    getTodos,
-    toggleComplete,
-    filter,
-    setFilter,
-  } = useStore();
+  const { addTodo, deleteTodo, getTodos, toggleComplete, filter, setFilter } = useStore();
 
   useEffect(() => {
     getTodos();
@@ -40,72 +33,76 @@ const TestComponent = (): ReactElement => {
 
   return (
     <Wrapper>
-
-      <br />
-      <form>
-        <input
-          type="text"
-          name="todoTitle"
-          value={todoTitle}
-          onChange={(e) => setTodoTitle(e.target.value)}
-        />
-        <button type="submit" onClick={(e) => handleAddTodo(e)}>
-          add
-        </button>
-      </form>
-      <br />
-      <ul>
-        {todos?.map((todo) => (
-          <li
-            className={`${todo.completed ? 'line-through' : ''}`}
-            key={todo.id}
+      <Content>
+        <form className="flex">
+          <Form
+            type="text"
+            name="todoTitle"
+            value={todoTitle}
+            placeholder="new todo"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setTodoTitle(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="default-btn bg-cyan-500"
+            onClick={(e: MouseEvent<HTMLButtonElement>) => handleAddTodo(e)}
           >
-            {todo.description}
-            <button
-              className="text-red-500 border-2 mx-6"
-              type="button"
-              onClick={() => deleteTodo(todo.id)}
+            add
+          </button>
+        </form>
+        <br />
+        <ul>
+          {todos?.map((todo) => (
+            <li
+              className={`${todo.completed ? 'line-through' : ''}`}
+              key={todo.id}
             >
-              X
-            </button>
-            <button
-              type="button"
-              onClick={() => toggleComplete(todo)}
-              className="border-2"
-            >
-              {todo.completed ? 'undone' : 'done'}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h3>Filter test</h3>
-      <div>
-        <button
-          disabled={filter === null}
-          type="button"
-          className="bg-blue-300 disabled:bg-red-300 text-white py-2 px-4"
-          onClick={() => setFilter(null)}
-        >
-          All
-        </button>
-        <button
-          disabled={filter === false}
-          type="button"
-          className="bg-blue-300 disabled:bg-red-300 text-white py-2 px-4"
-          onClick={() => setFilter(false)}
-        >
-          To Do
-        </button>
-        <button
-          disabled={filter === true}
-          type="button"
-          className="bg-blue-300 disabled:bg-red-300 text-white py-2 px-4"
-          onClick={() => setFilter(true)}
-        >
-          Done
-        </button>
-      </div>
+              {todo.description}
+              <button
+                className="default-btn bg-red-500"
+                type="button"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                X
+              </button>
+              <button
+                type="button"
+                onClick={() => toggleComplete(todo)}
+                className="default-btn bg-green-500"
+              >
+                {todo.completed ? 'undone' : 'done'}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <br />
+        <div>
+          <button
+            disabled={filter === null}
+            type="button"
+            className="default-btn bg-blue-500 disabled:bg-red-400 text-white py-2 px-4"
+            onClick={() => setFilter(null)}
+          >
+            All
+          </button>
+          <button
+            disabled={filter === false}
+            type="button"
+            className="default-btn bg-blue-500 disabled:bg-red-400 text-white py-2 px-4"
+            onClick={() => setFilter(false)}
+          >
+            To Do
+          </button>
+          <button
+            disabled={filter === true}
+            type="button"
+            className="default-btn bg-blue-500 disabled:bg-red-400 text-white py-2 px-4"
+            onClick={() => setFilter(true)}
+          >
+            Done
+          </button>
+        </div>
+      </Content>
     </Wrapper>
   );
 };
