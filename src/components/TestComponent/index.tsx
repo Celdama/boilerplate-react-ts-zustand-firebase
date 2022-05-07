@@ -6,7 +6,7 @@ import { ChangeEvent, MouseEvent, ReactElement, useEffect, useState } from 'reac
 
 import { useTodosSelector } from '../../store/selectors/useTodoSelector';
 import { useStore } from '../../store/useStore';
-import { Content, Form, Wrapper } from './testComponent.tw';
+import { Content, Input, Wrapper } from './testComponent.tw';
 
 const TestComponent = (): ReactElement => {
   const [todoTitle, setTodoTitle] = useState('');
@@ -35,7 +35,7 @@ const TestComponent = (): ReactElement => {
     <Wrapper>
       <Content>
         <form className="flex">
-          <Form
+          <Input
             type="text"
             name="todoTitle"
             value={todoTitle}

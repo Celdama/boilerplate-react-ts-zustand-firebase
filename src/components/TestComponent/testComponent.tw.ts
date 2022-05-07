@@ -12,6 +12,6 @@ export const Wrapper = tw.div`
 export const Content = tw.div`
 `;
 
-export const Form = tw.form`
+export const Input = tw.input`
   p-3 w-60 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 outline-none
 `;
