@@ -40,7 +40,9 @@ const TestComponent = (): ReactElement => {
             name="todoTitle"
             value={todoTitle}
             placeholder="new todo"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setTodoTitle(e.target.value)}
+            onChange={
+              (e: ChangeEvent<HTMLInputElement>) => setTodoTitle(e.target.value)
+            }
           />
           <button
             type="submit"
